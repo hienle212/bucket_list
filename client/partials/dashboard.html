@@ -1,0 +1,35 @@
+<div ng-controller="ListController as LC">
+<ul>
+  <li><a href="#bucketlist">Bucket List</a></li>
+  <li><a href="#/dashboard">Home</a></li>
+  <li><a href="/">Logout</a></li>
+</ul>
+<h1>Welcome {{LC.user.name}} ! </h1>
+
+  <form name="listForm">
+    <input type="text" name="title" placeholder="Title" ng-model="LC.newList.title" required ng-minlength='5'>
+    <input type="text" name="description" placeholder="Description" ng-model="LC.newList.description" required ng-minlength='10'>
+    <select  ng-model='LC.newList._user' >
+      <option ng-repeat="user in LC.users" ng-if="user.name != LC.user.name" value="{{user._id}}">{{user.name}}</option>
+    </select>
+    <button ng-click="LC.create()">Add to List</button>
+</form>
+
+<div ng-messages="listForm.title.$error">
+      <p ng-message="minlength">Title is too short.</p>
+</div>
+<div ng-messages="listForm.description.$error">
+      <p ng-message="minlength">Description is too short.</p>
+</div>
+
+<p>Before I die I want to..</p>
+
+      <p ng-repeat="list in LC.lists">
+        <input type="checkbox" ng-model="checkboxModel.value1" ng-true-value="'YES'" ng-false-value="'NO'"> {{list.creator}} | {{list.title}} - {{list.description}} - {{list.createdAt|date: "MM/dd/yyyy"}} 
+      </p>
+
+<p>List of other users(click to view profile):</p>
+<div ng-repeat="user in LC.users" ng-if="user.name != LC.user.name">
+<a href="#/user/{{user._id}}">{{user.name}}</a>
+</div>
+</div>

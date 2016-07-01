@@ -1,0 +1,12 @@
+<div ng-controller="UsersController as UC ">
+
+<h1>Bucket Lists</h1>
+	<form name="loginForm">
+	  	Name : <input type="text" ng-model="UC.newUser.name" name="name" ng-minlength='4' required><br>
+	  	<button ng-click="UC.logReg()">Enter</button>
+	 </form>
+ <div ng-messages="loginForm.name.$error">
+     <p ng-message="minlength">Name is too short.</p>
+     <p ng-message="required">Name is required.</p>
+</div>
+</div>

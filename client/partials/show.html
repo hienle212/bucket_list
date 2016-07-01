@@ -1,0 +1,14 @@
+<div ng-controller="ListController as LC">
+<ul>
+  <li><a href="#bucketlist">Bucket List</a></li>
+  <li><a href="#/dashboard">Home</a></li>
+  <li><a href="/">Logout</a></li>
+</ul>
+{{LC.user_info}}
+<h1>{{LC.user_info.name}}'s Bucket List</h1>
+<p>Done</p>
+  <div ng-repeat="list in LC.user_info._lists">
+      <label><input type="checkbox" ng-model="checkboxModel.value1" ng-true-value="'YES'" ng-false-value="'NO'"> {{list.creator}} | {{list.title}} - {{list.description}} - {{list.createdAt|date: "MM/dd/yyyy"}} </label><br>
+  </div>
+
+</div>
